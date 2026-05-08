@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTS RPL – GoaKaca.id | Gonzalez Exaudi Manurung</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pri:#0e4b82;--pri2:#1a6fc4;--acc:#e8a020;--acc2:#f5c84a;
+    --dark:#0a1628;--dark2:#12233f;--card:#ffffff;
+    --bg:#f0f4fa;--border:#dce6f5;
+    --text:#1a2540;--muted:#5a6e8a;--light:#e8f0fb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+
+  
+  .sidebar{
+    width:260px;background:var(--dark);position:fixed;top:0;left:0;
+    height:100vh;overflow-y:auto;z-index:200;display:flex;flex-direction:column;
+    border-right:1px solid rgba(255,255,255,.06);
+  }
+  .sb-head{padding:28px 22px 20px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .sb-brand{font-family:'Playfair Display',serif;font-size:1.4rem;color:#fff;letter-spacing:.5px;}
+  .sb-tagline{font-size:.72rem;color:#7a98cc;margin-top:3px;letter-spacing:1px;text-transform:uppercase;}
+  .sb-id{margin-top:10px;padding:10px 14px;background:rgba(255,255,255,.05);border-radius:8px;}
+  .sb-id p{font-size:.72rem;color:#a0b8d8;line-height:1.7;}
+  .sb-id strong{color:#63b3ed;}
+  .nav{padding:14px 12px;flex:1;}
+  .nav-group{margin-bottom:6px;}
+  .nav-label{font-size:.63rem;color:#4a6a90;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:8px 10px 4px;}
+  .nav a{
+    display:flex;align-items:center;gap:10px;padding:8px 10px;
+    color:#8aa8cc;text-decoration:none;border-radius:7px;font-size:.82rem;font-weight:500;
+    transition:all .2s;margin-bottom:2px;
+  }
+  .nav a:hover,.nav a.active{background:rgba(99,179,237,.12);color:#63b3ed;}
+  .nav a .ni{
+    width:22px;height:22px;background:rgba(99,179,237,.15);border-radius:5px;
+    display:flex;align-items:center;justify-content:center;font-size:.7rem;
+    font-weight:700;color:#63b3ed;flex-shrink:0;
+  }
+  .nav a:hover .ni,.nav a.active .ni{background:rgba(99,179,237,.3);}
+  .sb-foot{padding:14px 22px;border-top:1px solid rgba(255,255,255,.06);font-size:.7rem;color:#4a6a90;}
+
+  
+  .main{margin-left:260px;min-height:100vh;}
+
+  
+  .hero{
+    background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 40%,#0e3060 80%,#1a5fa0 100%);
+    padding:72px 56px 64px;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;top:-100px;right:-100px;
+    width:400px;height:400px;border-radius:50%;
+    background:radial-gradient(circle,rgba(26,111,196,.35) 0%,transparent 70%);
+  }
+  .hero::after{
+    content:'';position:absolute;bottom:-60px;left:30%;
+    width:200px;height:200px;border-radius:50%;
+    background:radial-gradient(circle,rgba(232,160,32,.15) 0%,transparent 70%);
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+    color:#b8d4f0;padding:5px 14px;border-radius:20px;font-size:.75rem;
+    font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-bottom:20px;
+  }
+  .hero h1{
+    font-family:'Playfair Display',serif;font-size:3rem;color:#fff;
+    line-height:1.2;margin-bottom:12px;font-weight:800;
+  }
+  .hero h1 span{color:var(--acc2);}
+  .hero-sub{font-size:1rem;color:#8ab4d8;max-width:560px;margin-bottom:36px;font-weight:300;}
+  .id-cards{display:flex;flex-wrap:wrap;gap:12px;}
+  .id-card{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+    border-radius:10px;padding:12px 18px;min-width:150px;
+  }
+  .id-card span{font-size:.68rem;color:#6a9cc0;text-transform:uppercase;letter-spacing:.8px;display:block;margin-bottom:3px;}
+  .id-card strong{color:#fff;font-size:.88rem;}
+
+  
+  .content{padding:40px 56px 80px;}
+  .sec{
+    background:var(--card);border-radius:16px;padding:40px;margin-bottom:40px;
+    border:1px solid var(--border);position:relative;overflow:hidden;
+  }
+  .sec::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,var(--pri2),var(--acc));
+  }
+  .pill{
+    display:inline-flex;align-items:center;gap:6px;
+    background:linear-gradient(135deg,var(--pri),var(--pri2));
+    color:#fff;padding:5px 16px;border-radius:20px;font-size:.72rem;
+    font-weight:700;letter-spacing:.5px;margin-bottom:20px;
+  }
+  .sec h2{
+    font-family:'Playfair Display',serif;font-size:1.85rem;color:var(--dark);
+    margin-bottom:6px;
+  }
+  .sec-desc{font-size:.9rem;color:var(--muted);margin-bottom:28px;border-bottom:1px solid var(--border);padding-bottom:16px;}
+  .sec h3{font-size:1rem;font-weight:700;color:var(--pri);margin:24px 0 12px;display:flex;align-items:center;gap:8px;}
+  .sec h3::before{content:'';width:4px;height:16px;background:var(--acc);border-radius:2px;display:inline-block;}
+  p{font-size:.9rem;color:var(--muted);line-height:1.8;}
+
+  
+  .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:12px;}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:12px;}
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:12px;}
+
+  
+  .card{background:var(--light);border:1px solid var(--border);border-radius:12px;padding:20px;}
+  .card-icon{font-size:1.5rem;margin-bottom:8px;}
+  .card h4{font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+  .card p{font-size:.82rem;color:var(--muted);}
+
+  .card.blue{background:#eff6ff;border-color:#bfdbfe;}
+  .card.green{background:#f0fdf4;border-color:#bbf7d0;}
+  .card.amber{background:#fffbeb;border-color:#fde68a;}
+  .card.red{background:#fff1f2;border-color:#fecdd3;}
+  .card.purple{background:#f5f3ff;border-color:#ddd6fe;}
+  .card.teal{background:#f0fdfa;border-color:#99f6e4;}
+
+  
+  .tbl{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:12px;}
+  .tbl th{background:var(--pri);color:#fff;padding:10px 14px;text-align:left;font-weight:600;}
+  .tbl th:first-child{border-radius:6px 0 0 0;}
+  .tbl th:last-child{border-radius:0 6px 0 0;}
+  .tbl td{padding:10px 14px;border-bottom:1px solid var(--border);}
+  .tbl tr:hover td{background:#f7faff;}
+  .tbl tr:last-child td{border-bottom:none;}
+
+  
+  .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:700;text-transform:uppercase;}
+  .badge.b1{background:#dbeafe;color:#1e40af;}
+  .badge.b2{background:#dcfce7;color:#166534;}
+  .badge.b3{background:#fef3c7;color:#92400e;}
+  .badge.b4{background:#ffe4e6;color:#be123c;}
+
+  
+  .visi{background:linear-gradient(135deg,#eff6ff,#e0f2fe);border-left:4px solid var(--pri2);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:14px;font-size:.9rem;color:var(--text);line-height:1.8;}
+  .misi-item{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:#f0fdf4;border-left:4px solid #22c55e;border-radius:0 8px 8px 0;margin-bottom:8px;}
+  .misi-item .mi-num{background:#22c55e;color:#fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .misi-item p{font-size:.88rem;color:var(--text);margin:0;}
+
+  
+  .alur{display:flex;flex-wrap:wrap;gap:0;margin-top:16px;}
+  .alur-step{flex:1;min-width:110px;background:#eff6ff;border:1px solid #bfdbfe;padding:16px 12px;position:relative;text-align:center;font-size:.78rem;color:var(--text);}
+  .alur-step:not(:last-child)::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--pri);font-weight:700;z-index:2;background:#eff6ff;padding:2px;}
+  .alur-num{background:var(--pri2);color:#fff;border-radius:50%;width:26px;height:26px;line-height:26px;font-size:.75rem;font-weight:700;margin:0 auto 6px;}
+  .alur-step:first-child{border-radius:10px 0 0 10px;}
+  .alur-step:last-child{border-radius:0 10px 10px 0;}
+
+  
+  .diag-wrap{background:#f8faff;border:1.5px dashed #bfdbfe;border-radius:14px;padding:24px;margin-bottom:20px;text-align:center;}
+  .diag-wrap svg{max-width:100%;height:auto;}
+  .diag-wrap img{max-width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+  .diag-caption{font-size:.78rem;color:var(--muted);margin-top:12px;font-style:italic;}
+
+  
+  .uc-desc-table{font-size:.82rem;}
+  .uc-desc-table th{background:var(--dark2);color:#fff;padding:9px 12px;}
+  .uc-desc-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top;}
+  .uc-desc-table tr:last-child td{border-bottom:none;}
+  .uc-desc-table tr:nth-child(even) td{background:#f7faff;}
+
+  
+  .form-wrap{max-width:540px;}
+  .form-group{margin-bottom:18px;}
+  label{display:block;font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:6px;}
+  input[type=text],input[type=email],textarea,select{
+    width:100%;padding:11px 14px;border:1.5px solid var(--border);
+    border-radius:8px;font-size:.88rem;font-family:inherit;
+    outline:none;transition:border .2s;background:#fff;color:var(--text);
+  }
+  input:focus,textarea:focus,select:focus{border-color:var(--pri2);}
+  textarea{resize:vertical;min-height:110px;}
+  .btn{
+    background:linear-gradient(135deg,var(--pri),var(--pri2));
+    color:#fff;border:none;padding:12px 28px;border-radius:8px;
+    font-size:.9rem;font-weight:700;cursor:pointer;transition:opacity .2s;
+    font-family:inherit;
+  }
+  .btn:hover{opacity:.9;}
+  .alert{display:none;border-radius:8px;padding:12px 16px;margin-top:14px;font-size:.88rem;}
+  .alert.ok{background:#f0fdf4;border:1px solid #86efac;color:#166534;}
+  .alert.err{background:#fff1f2;border:1px solid #fecdd3;color:#be123c;}
+
+  
+  .info-box{background:var(--light);border-radius:12px;padding:18px 22px;margin-bottom:16px;border-left:4px solid var(--pri2);}
+  .info-box h4{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+  .info-box p{font-size:.85rem;color:var(--muted);margin:0;}
+
+  
+  .role-card{border-radius:12px;padding:20px;border:1.5px solid;}
+  .role-card h4{font-size:.95rem;font-weight:700;margin-bottom:10px;}
+  .role-card ul{padding-left:18px;font-size:.83rem;color:var(--muted);}
+  .role-card li{margin-bottom:5px;}
+  .role-card.r1{background:#eff6ff;border-color:#bfdbfe;}
+  .role-card.r1 h4{color:#1e40af;}
+  .role-card.r2{background:#f0fdf4;border-color:#bbf7d0;}
+  .role-card.r2 h4{color:#166534;}
+  .role-card.r3{background:#fff1f2;border-color:#fecdd3;}
+  .role-card.r3 h4{color:#be123c;}
+  .role-card.r4{background:#fffbeb;border-color:#fde68a;}
+  .role-card.r4 h4{color:#92400e;}
+
+  
+  .nf-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;}
+  .nf-card h4{font-size:.9rem;font-weight:700;color:var(--pri);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+  .nf-card p{font-size:.82rem;color:var(--muted);margin:0;}
+
+  
+  .yt-box{background:#fff1f2;border:1px solid #fecdd3;border-radius:12px;padding:18px;margin-top:12px;}
+  .yt-box a{color:#be123c;font-weight:700;word-break:break-all;}
+  .sim-box{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:18px;margin-top:12px;}
+  .sim-box a{color:#166534;font-weight:700;word-break:break-all;}
+
+  
+  @media(max-width:860px){
+    .sidebar{width:100%;height:auto;position:relative;}
+    .main{margin-left:0;}
+    .hero{padding:40px 24px;}
+    .content{padding:24px 20px 60px;}
+    .hero h1{font-size:2rem;}
+    .sec{padding:28px 20px;}
+    .alur-step:not(:last-child)::after{display:none;}
+  }
+
+  
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .sec{animation:fadeUp .5s ease both;}
+  .sec:nth-child(2){animation-delay:.05s;}
+  .sec:nth-child(3){animation-delay:.1s;}
+  .sec:nth-child(4){animation-delay:.15s;}
+</style>
+</head>
+<body>
+<div style="display:flex;">
+
+
+<nav class="sidebar">
+  <div class="sb-head">
+    <div class="sb-brand">🏞️ GoaKaca.id</div>
+    <div class="sb-tagline">UTS Rekayasa Perangkat Lunak</div>
+    <div class="sb-id">
+      <p><strong>Gonzalez Exaudi Manurung</strong><br>NIM: 253303611230<br>Kelas: II / 2 Pagi A<br>Dosen: Achmad Ridwan, ST, M.Si</p>
+    </div>
+  </div>
+  <div class="nav">
+    <div class="nav-group">
+      <div class="nav-label">Navigasi</div>
+      <a href="#hero"><span class="ni">🏠</span> Beranda</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Soal 1–3</div>
+      <a href="#s1"><span class="ni">01</span> Potensi Lokal</a>
+      <a href="#s2"><span class="ni">02</span> Analisis Kebutuhan</a>
+      <a href="#s3"><span class="ni">03</span> Konsep Sistem</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Soal 4 — Diagram UML</div>
+      <a href="#s4a"><span class="ni">4a</span> Use Case</a>
+      <a href="#s4b"><span class="ni">4b</span> Activity</a>
+      <a href="#s4c"><span class="ni">4c</span> Sequence</a>
+      <a href="#s4d"><span class="ni">4d</span> Class</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Soal 5–6</div>
+      <a href="#s5"><span class="ni">05</span> Form Kontak</a>
+      <a href="#s6"><span class="ni">06</span> Video & Identitas</a>
+    </div>
+  </div>
+  <div class="sb-foot">Universitas Prima Indonesia · 2025/2026</div>
+</nav>
+
+
+<main class="main">
+
+
+<div class="hero" id="hero">
+  <div class="hero-badge">📋 UTS — Rekayasa Perangkat Lunak 2025/2026</div>
+  <h1>Wisata <span>Goa Kaca</span></h1>
+  <p class="hero-sub">Platform Digital Promosi & Reservasi Destinasi Wisata Alam Unggulan Sumatera Utara — Sistem Informasi Pariwisata Berbasis Website</p>
+  <div class="id-cards">
+    <div class="id-card"><span>Nama</span><strong>Gonzalez Exaudi Manurung</strong></div>
+    <div class="id-card"><span>NIM</span><strong>253303611230</strong></div>
+    <div class="id-card"><span>Kelas</span><strong>II / 2 Pagi A</strong></div>
+    <div class="id-card"><span>Mata Kuliah</span><strong>Rekayasa Perangkat Lunak</strong></div>
+    <div class="id-card"><span>Dosen</span><strong>Achmad Ridwan, ST, M.Si</strong></div>
+  </div>
+</div>
+
+<div class="content">
+
+
+<section class="sec" id="s1">
+  <div class="pill">📍 Soal 1</div>
+  <h2>Identifikasi Potensi Lokal</h2>
+  <p class="sec-desc">Identifikasi potensi nyata dari daerah asal yang akan dipromosikan secara digital melalui platform website.</p>
+
+  <h3>Nama & Deskripsi Potensi</h3>
+  <div class="info-box">
+    <h4>🏞️ Goa Kaca — Wisata Alam Karst Sumatera Utara</h4>
+    <p><strong>Goa Kaca</strong> adalah destinasi wisata alam unggulan yang terletak di kawasan Sumatera Utara. Keunikan utama goa ini adalah kejernihan airnya yang luar biasa — layaknya kaca bening — sehingga pengunjung dapat melihat dasar goa dengan sempurna tanpa hambatan. Goa ini menjadi rumah bagi ekosistem karst yang terjaga.Pengalaman menyusuri lorong batu ditemani pantulan cahaya dari permukaan air bening menjadikan Goa Kaca sebagai destinasi yang memukau bagi pecinta alam, peneliti, dan fotografer dari seluruh Indonesia.</p>
+  </div>
+
+  <h3>Lokasi Destinasi</h3>
+  <div class="grid3">
+    <div class="card blue"><div class="card-icon">🗺️</div><h4>Provinsi</h4><p>Sumatera Utara</p></div>
+    <div class="card blue"><div class="card-icon">🏘️</div><h4>Kawasan</h4><p>Kawasan Alami ini — dapat diakses via jalan setapak melewati hutan</p></div>
+    <div class="card blue"><div class="card-icon">🚗</div><h4>Akses</h4><p>±5 jam dari Kota Medan, menggunakan kendaraan roda dua/empat lalu dilanjut jalan kaki</p></div>
+  </div>
+
+  <h3>Mengapa Belum Dikenal Luas?</h3>
+  <div class="grid2">
+    <div class="card amber">
+      <div class="card-icon">📵</div>
+      <h4>Tidak Ada Platform Digital</h4>
+      <p>Goa Kaca belum memiliki website resmi maupun media sosial aktif. Informasi hanya tersebar dari mulut ke mulut di komunitas lokal, sehingga tidak terjangkau oleh wisatawan luar daerah.</p>
+    </div>
+    <div class="card amber">
+      <div class="card-icon">🛣️</div>
+      <h4>Infrastruktur & Promosi Minim</h4>
+      <p>Akses jalan yang belum sepenuhnya memadai dan minimnya papan petunjuk membuat wisatawan sulit menemukan lokasi ini tanpa panduan lokal.</p>
+    </div>
+    <div class="card green">
+      <div class="card-icon">📈</div>
+      <h4>Dampak Positif Promosi Digital</h4>
+      <p>Dengan platform digital, jangkauan informasi meluas ke seluruh Indonesia bahkan mancanegara, meningkatkan jumlah wisatawan, memberdayakan UMKM lokal, dan mendukung pelestarian ekosistem goa.</p>
+    </div>
+    <div class="card green">
+      <div class="card-icon">💰</div>
+      <h4>Potensi Ekonomi Masyarakat</h4>
+      <p>Peningkatan kunjungan wisatawan akan mendorong pertumbuhan usaha lokal seperti warung makan, penginapan, dan pemandu wisata yang dapat menyerap tenaga kerja daerah.</p>
+    </div>
+  </div>
+
+  <h3>Target Pengguna Utama</h3>
+  <div class="grid4">
+    <div class="card blue"><div class="card-icon">🧗</div><h4>Wisatawan & Pecinta Alam</h4><p>Pengunjung yang mencari destinasi wisata alam unik dan ingin merencanakan kunjungan terorganisir.</p></div>
+    <div class="card purple"><div class="card-icon">📸</div><h4>Fotografer & Konten Kreator</h4><p>Mencari lokasi foto eksotis dengan keindahan alam karst yang belum banyak terekspos di media sosial.</p></div>
+    <div class="card teal"><div class="card-icon">🏪</div><h4>Masyarakat & UMKM Lokal</h4><p>Warga dan pelaku usaha yang mendapatkan manfaat ekonomi dari peningkatan jumlah wisatawan.</p></div>
+    <div class="card green"><div class="card-icon">🏛️</div><h4>Dinas Pariwisata</h4><p>Instansi pemerintah yang mendukung, mengawasi, dan mempromosikan potensi wisata daerah secara resmi.</p></div>
+  </div>
+</section>
+
+
+<section class="sec" id="s2">
+  <div class="pill">📋 Soal 2</div>
+  <h2>Analisis Kebutuhan Sistem</h2>
+  <p class="sec-desc">Analisis kebutuhan perangkat lunak berdasarkan potensi Goa Kaca yang dipilih pada Soal 1.</p>
+
+  <h3>a. Kebutuhan Fungsional — 7 Fitur Utama</h3>
+  <table class="tbl">
+    <thead><tr><th>#</th><th>Fitur Utama</th><th>Deskripsi & Cara Kerja</th></tr></thead>
+    <tbody>
+      <tr><td><span class="badge b1">F1</span></td><td><strong>Halaman Profil & Informasi</strong></td><td>Menampilkan deskripsi lengkap Goa Kaca, sejarah, keunikan, fasilitas, dan aturan kunjungan kepada semua pengunjung tanpa perlu login.</td></tr>
+      <tr><td><span class="badge b1">F2</span></td><td><strong>Galeri Foto & Video</strong></td><td>Pengunjung dapat menelusuri koleksi foto dan video HD yang dikurasi admin. Mendukung filter kategori (air, fauna) dan tampilan lightbox.</td></tr>
+      <tr><td><span class="badge b1">F3</span></td><td><strong>Sistem Reservasi Tiket Online</strong></td><td>Pengunjung mendaftar akun, memilih tanggal kunjungan, jumlah orang, dan paket wisata, lalu melakukan pembayaran melalui sistem pembayaran digital. Sesuai class diagram: Reservasi memiliki atribut tanggal_wisata, jumlah_orang, dan total_biaya.</td></tr>
+      <tr><td><span class="badge b1">F4</span></td><td><strong>Ulasan & Rating Pengunjung</strong></td><td>Pengunjung yang telah berkunjung dapat memberikan ulasan teks (komentar) dan nilai bintang 1–5. Rata-rata rating ditampilkan di halaman utama. Sesuai class diagram: Kelas Ulasan memiliki id_ulasan, id_pengunjung, id_konten, nilai, dan komentar.</td></tr>
+      <tr><td><span class="badge b1">F5</span></td><td><strong>Manajemen Konten Admin</strong></td><td>Admin dapat menambah, mengubah, dan menghapus konten (artikel, galeri, harga tiket, informasi fasilitas) melalui dashboard khusus. Sesuai class diagram: Kelas Konten memiliki method tambahKonten(), editKonten(), hapusKonten().</td></tr>
+      <tr><td><span class="badge b2">F6</span></td><td><strong>Layanan Guide & Mitra Lokal</strong></td><td>Mitra Lokal dapat mendaftar, login, dan mengelola penyediaan layanan pemandu wisata (guide). Sesuai class diagram: Mitra Lokal memiliki method penyediaanLayananGuide() dan berikanLayananInformasi().</td></tr>
+      <tr><td><span class="badge b2">F7</span></td><td><strong>Form Kontak & Manajemen Pesan</strong></td><td>Pengunjung dapat mengirimkan pesan/pertanyaan melalui form kontak. Admin dapat membalas dan mengelola pesan melalui fitur manajemenPesan().</td></tr>
+    </tbody>
+  </table>
+
+  <h3>b. Kebutuhan Non-Fungsional — 4 Aspek</h3>
+  <div class="grid4">
+    <div class="nf-card"><h4>🚀 Performa</h4><p>Halaman utama memuat dalam ≤3 detik pada koneksi 4G. Gambar dioptimasi dengan lazy loading dan kompresi WebP.</p></div>
+    <div class="nf-card"><h4>🔒 Keamanan</h4><p>Semua input divalidasi dan di-sanitasi (anti-SQL Injection & XSS). Password terenkripsi bcrypt. Transaksi menggunakan HTTPS/SSL.</p></div>
+    <div class="nf-card"><h4>📱 Responsif</h4><p>Tampilan optimal di semua perangkat (mobile ≥320px, tablet, desktop) dengan pendekatan mobile-first CSS yang fleksibel.</p></div>
+    <div class="nf-card"><h4>♿ Usability</h4><p>Navigasi intuitif max. 3 klik untuk akses informasi apapun. Kontras warna memenuhi standar WCAG 2.1 AA untuk aksesibilitas.</p></div>
+  </div>
+
+  <h3>c. Peran Pengguna (User Role) — 4 Peran</h3>
+  <p style="margin-bottom:12px;">Sesuai class diagram yang disediakan, sistem memiliki 4 peran pengguna dengan hak akses masing-masing:</p>
+  <div class="grid2">
+    <div class="role-card r1">
+      <span class="badge b1" style="margin-bottom:8px;">Pengunjung</span>
+      <h4>Hak Akses & Fungsi</h4>
+      <ul>
+        <li>Melihat seluruh konten & galeri publik</li>
+        <li>Registrasi & login akun</li>
+        <li>Melakukan reservasi tiket (buatReservasi)</li>
+        <li>Membatalkan pesanan (batalkanPesanan)</li>
+        <li>Memberikan ulasan & rating (addUlasan)</li>
+        <li>Membaca informasi fasilitas</li>
+        <li>Mengirim pesan kontak</li>
+      </ul>
+    </div>
+    <div class="role-card r2">
+      <span class="badge b2" style="margin-bottom:8px;">Admin</span>
+      <h4>Hak Akses & Fungsi</h4>
+      <ul>
+        <li>Manajemen konten (tambah/ubah/hapus)</li>
+        <li>Memantau arus transaksi pembayaran</li>
+        <li>Manajemen pesan pengunjung</li>
+        <li>Konfirmasi payment & reservasi</li>
+        <li>Kelola akun pengguna & mitra</li>
+        <li>Akses dashboard laporan & statistik</li>
+      </ul>
+    </div>
+    <div class="role-card r3">
+      <span class="badge b4" style="margin-bottom:8px;">Mitra Lokal (Guide)</span>
+      <h4>Hak Akses & Fungsi</h4>
+      <ul>
+        <li>Login ke portal mitra</li>
+        <li>Penyediaan layanan guide</li>
+        <li>Memberikan layanan informasi wisata</li>
+        <li>Penanganan masalah di lapangan</li>
+        <li>Kelola profil badan usaha mitra</li>
+      </ul>
+    </div>
+    <div class="role-card r4">
+      <span class="badge b3" style="margin-bottom:8px;">Sistem Pembayaran</span>
+      <h4>Hak Akses & Fungsi</h4>
+      <ul>
+        <li>Proses transaksi pembayaran tiket</li>
+        <li>Konfirmasi status pembayaran</li>
+        <li>Validasi keabsahan pembayaran</li>
+        <li>Integrasi dengan gateway payment</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="s3">
+  <div class="pill">🏗️ Soal 3</div>
+  <h2>Konsep & Arsitektur Perangkat Lunak</h2>
+  <p class="sec-desc">Rancangan konsep lengkap perangkat lunak GoaKaca.id beserta visi, misi, modul utama, dan alur kerja sistem.</p>
+
+  <h3>a. Nama Aplikasi</h3>
+  <div style="background:linear-gradient(135deg,#0e4b82,#1a6fc4);border-radius:14px;padding:24px 28px;margin-bottom:8px;color:#fff;">
+    <p style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:#f5c84a;margin-bottom:6px;">GoaKaca.id</p>
+    <p style="font-size:.9rem;color:#b8d4f0;line-height:1.7;margin:0;">
+      Nama <strong style="color:#fff;">GoaKaca.id</strong> dipilih karena mencerminkan keunikan inti destinasi — kejernihan air goa yang bening layaknya kaca — sekaligus menegaskan identitas lokal Indonesia melalui ekstensi domain <em>.id</em>. Nama ini singkat, mudah diingat, deskriptif, dan kuat sebagai merek digital pariwisata yang bisa dikenal secara internasional.
+    </p>
+  </div>
+
+  <h3>b. Visi & Misi</h3>
+  <div class="visi"><strong>Visi:</strong> Menjadikan GoaKaca.id sebagai platform digital wisata terdepan yang memperkenalkan keindahan Goa Kaca kepada dunia, mendorong pariwisata berkelanjutan, serta memberdayakan masyarakat dan mitra lokal Sumatera Utara melalui teknologi informasi yang inovatif dan inklusif.</div>
+  <div class="misi-item"><div class="mi-num">1</div><p>🌐 Menyediakan informasi wisata Goa Kaca yang lengkap, akurat, dan mudah diakses oleh masyarakat lokal maupun wisatawan mancanegara melalui platform digital yang responsif.</p></div>
+  <div class="misi-item"><div class="mi-num">2</div><p>💼 Memfasilitasi reservasi tiket, pembayaran digital, dan layanan guide secara online untuk meningkatkan efisiensi pengelolaan dan kenyamanan pengunjung.</p></div>
+  <div class="misi-item"><div class="mi-num">3</div><p>🌿 Mendukung pelestarian ekosistem Goa Kaca dengan mempromosikan praktik wisata yang bertanggung jawab, edukasi lingkungan, dan pembatasan kuota kunjungan berbasis teknologi.</p></div>
+
+  <h3>c. Modul Utama Sistem — 8 Modul</h3>
+  <div class="grid4">
+    <div class="card blue"><div class="card-icon">🏠</div><h4>Beranda</h4><p>Halaman utama dengan hero banner, highlights destinasi, rating terkini, dan pengumuman event wisata.</p></div>
+    <div class="card blue"><div class="card-icon">📖</div><h4>Profil & Informasi</h4><p>Deskripsi lengkap Goa Kaca, sejarah, keunikan, ekosistem, fasilitas, dan aturan kunjungan.</p></div>
+    <div class="card purple"><div class="card-icon">🖼️</div><h4>Galeri Media</h4><p>Foto dan video HD tersaring berdasarkan kategori (air, fauna, panorama).</p></div>
+    <div class="card teal"><div class="card-icon">🎫</div><h4>Reservasi & Tiket</h4><p>Pemesanan tiket online dengan pilihan paket, kalender ketersediaan, dan integrasi payment gateway.</p></div>
+    <div class="card green"><div class="card-icon">⭐</div><h4>Ulasan & Komunitas</h4><p>Sistem rating dan ulasan pengunjung, forum diskusi, dan tips wisata dari komunitas.</p></div>
+    <div class="card amber"><div class="card-icon">🤝</div><h4>Portal Mitra Lokal</h4><p>Dashboard mitra untuk mengelola layanan guide, jadwal, dan penanganan masalah lapangan.</p></div>
+    <div class="card red"><div class="card-icon">📬</div><h4>Kontak & FAQ</h4><p>Form kontak terintegrasi, FAQ interaktif, dan pendaftaran pemandu wisata lokal baru.</p></div>
+    <div class="card"><div class="card-icon">🔧</div><h4>Dashboard Admin</h4><p>Panel pengelolaan konten, pemantauan transaksi, manajemen akun, dan laporan statistik kunjungan.</p></div>
+  </div>
+
+  <h3>d. Alur Kerja Sistem</h3>
+  <div class="alur">
+    <div class="alur-step"><div class="alur-num">1</div>Akses GoaKaca.id via browser</div>
+    <div class="alur-step"><div class="alur-num">2</div>Jelajahi beranda & informasi wisata</div>
+    <div class="alur-step"><div class="alur-num">3</div>Lihat galeri & peta lokasi</div>
+    <div class="alur-step"><div class="alur-num">4</div>Registrasi / Login akun</div>
+    <div class="alur-step"><div class="alur-num">5</div>Pilih paket & tanggal kunjungan</div>
+    <div class="alur-step"><div class="alur-num">6</div>Proses pembayaran tiket</div>
+    <div class="alur-step"><div class="alur-num">7</div>Konfirmasi reservasi diterima</div>
+    <div class="alur-step"><div class="alur-num">8</div>Kunjungi & berikan ulasan</div>
+  </div>
+  <p style="margin-top:12px;font-size:.82rem;">Pengguna yang belum login dapat menelusuri seluruh informasi publik tanpa hambatan. Login diperlukan hanya untuk melakukan reservasi, memberikan ulasan, atau mengirim pesan dengan identitas terlacak. Admin memantau seluruh aktivitas melalui dashboard terpisah.</p>
+</section>
+
+
+<section class="sec" id="s4a">
+  <div class="pill">📊 Soal 4a — Use Case Diagram</div>
+  <h2>Use Case Diagram</h2>
+  <p class="sec-desc">Diagram use case sesuai dengan diagram yang telah dirancang — menampilkan 4 aktor utama: Pengunjung, Admin, Mitra Lokal, dan Pembayaran.</p>
+
+  
+  <div class="diag-wrap">
+    <img src="usecase diagram uts.jpg">
+    <p class="diag-caption">Use Case Diagram GoaKaca.id — menampilkan 4 aktor (Pengunjung, Admin, Pembayaran, Mitra Lokal) dengan relasi include dan extend.</p>
+  </div>
+
+  <h3>Deskripsi Use Case</h3>
+  <table class="tbl uc-desc-table">
+    <thead><tr><th>Nama Use Case</th><th>Aktor</th><th>Deskripsi</th><th>Pra-kondisi</th><th>Pasca-kondisi</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Lihat Halaman Utama & Galeri</strong></td><td>Pengunjung</td><td>Pengunjung mengakses website dan melihat konten beranda serta galeri foto/video.</td><td>Website dapat diakses di browser</td><td>Konten tampil dengan lengkap</td></tr>
+      <tr><td><strong>Baca Informasi Fasilitas</strong></td><td>Pengunjung</td><td>Pengunjung membaca detail informasi fasilitas wisata Goa Kaca yang tersedia.</td><td>Halaman informasi dapat diakses</td><td>Informasi fasilitas tampil</td></tr>
+      <tr><td><strong>Registrasi Akun</strong></td><td>Pengunjung</td><td>Pengunjung baru mendaftarkan diri dengan mengisi form registrasi (nama, email, password).</td><td>Pengunjung belum memiliki akun</td><td>Akun baru berhasil dibuat</td></tr>
+      <tr><td><strong>Login & Logout</strong></td><td>Pengunjung, Admin</td><td>Pengguna masuk atau keluar dari sistem menggunakan kredensial (username & password).</td><td>Memiliki akun terdaftar</td><td>Sesi pengguna aktif/berakhir</td></tr>
+      <tr><td><strong>Reservasi</strong> <span class="badge b1">include: Pembayaran</span></td><td>Pengunjung</td><td>Pengunjung memesan tiket wisata dengan memilih tanggal, jumlah orang, dan paket. Melibatkan proses pembayaran.</td><td>Pengunjung sudah login</td><td>Data reservasi tersimpan, tiket diterbitkan</td></tr>
+      <tr><td><strong>Batalkan Pesanan</strong> <span class="badge b3">extend: Reservasi</span></td><td>Pengunjung</td><td>Pengunjung membatalkan reservasi yang telah dibuat (kondisi tertentu — extend dari Reservasi).</td><td>Reservasi aktif ada dalam sistem</td><td>Reservasi dibatalkan, status diperbarui</td></tr>
+      <tr><td><strong>Memberikan Ulasan</strong></td><td>Pengunjung</td><td>Pengunjung yang telah berkunjung memberikan rating (nilai) dan komentar terhadap destinasi.</td><td>Pengunjung sudah pernah berkunjung</td><td>Ulasan tersimpan dan tampil di website</td></tr>
+      <tr><td><strong>Proses Pembayaran</strong></td><td>Pembayaran</td><td>Sistem memproses transaksi pembayaran tiket yang dilakukan pengunjung melalui gateway.</td><td>Data reservasi valid tersedia</td><td>Transaksi diproses, status diperbarui</td></tr>
+      <tr><td><strong>Konfirmasi Pembayaran</strong></td><td>Pembayaran</td><td>Sistem mengkonfirmasi keberhasilan pembayaran dan memvalidasi transaksi.</td><td>Proses pembayaran selesai</td><td>Konfirmasi dikirim ke pengunjung</td></tr>
+      <tr><td><strong>Manajemen Konten</strong></td><td>Admin</td><td>Admin menambah, mengubah, dan menghapus konten informasi wisata di dalam sistem.</td><td>Admin sudah login</td><td>Konten diperbarui di website</td></tr>
+      <tr><td><strong>Memantau Arus Transaksi</strong></td><td>Admin</td><td>Admin memantau seluruh transaksi pembayaran dan reservasi yang terjadi di sistem.</td><td>Admin sudah login, transaksi ada</td><td>Laporan transaksi tampil di dashboard</td></tr>
+      <tr><td><strong>Manajemen Pesan</strong></td><td>Admin</td><td>Admin membaca dan membalas pesan kontak yang dikirimkan pengunjung.</td><td>Ada pesan masuk di sistem</td><td>Pesan terbaca/terbalas oleh admin</td></tr>
+      <tr><td><strong>Penyediaan Layanan Guide</strong></td><td>Mitra Lokal</td><td>Mitra mendaftarkan diri dan mengelola layanan pemandu wisata yang ditawarkan.</td><td>Mitra sudah terdaftar dan login</td><td>Data guide tersimpan dan tampil</td></tr>
+      <tr><td><strong>Penanganan Masalah</strong></td><td>Mitra Lokal</td><td>Mitra melaporkan dan menangani kendala yang terjadi di lapangan selama kunjungan wisata.</td><td>Terdapat masalah yang dilaporkan</td><td>Laporan masalah tercatat dan ditangani</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<section class="sec" id="s4b">
+  <div class="pill">📊 Soal 4b — Activity Diagram</div>
+  <h2>Activity Diagram</h2>
+  <p class="sec-desc">Dua activity diagram: (1) Alur reservasi tiket oleh pengunjung, (2) Alur admin mengelola konten.</p>
+
+  
+  <h3>Activity Diagram 1 — Alur Reservasi Tiket Pengunjung</h3>
+  <div class="diag-wrap">
+    <img src="activity diagram uts111.jpg">
+    <p class="diag-caption">Activity Diagram 1 — Alur pengunjung melakukan reservasi tiket: mulai akses website, cek login, pilih paket, sistem validasi ketersediaan, proses pembayaran paralel (kirim email + update DB), hingga konfirmasi tiket diterima.</p>
+  </div>
+
+  
+  <h3>Activity Diagram 2 — Alur Admin Mengelola Konten</h3>
+  <div class="diag-wrap">
+    <img src="activity diagram uts2.jpg">
+    <p class="diag-caption">Activity Diagram 2 — Alur Admin mengelola konten: login dashboard, pilih aksi (Tambah/Edit/Hapus), sistem validasi input dengan decision node, simpan ke database jika valid, tampilkan notifikasi berhasil kepada admin.</p>
+  </div>
+</section>
+
+
+<section class="sec" id="s4c">
+  <div class="pill">📊 Soal 4c — Sequence Diagram</div>
+  <h2>Sequence Diagram — Pengiriman Form Kontak</h2>
+  <p class="sec-desc">Sequence Diagram untuk alur pengunjung mengisi dan mengirimkan form kontak kepada pengelola GoaKaca.id.</p>
+
+  <div class="diag-wrap">
+    <img src="Sequence Diagram Uts.jpg">
+    <p class="diag-caption">Sequence Diagram — Melibatkan 4 lifeline: Pengunjung (aktor), Halaman Kontak (boundary), Controller/Server (control), Database (entity). Alur: buka form → isi data → submit → validasi → simpan DB → notif email → konfirmasi sukses ke pengunjung.</p>
+  </div>
+</section>
+
+
+<section class="sec" id="s4d">
+  <div class="pill">📊 Soal 4d — Class Diagram</div>
+  <h2>Class Diagram</h2>
+  <p class="sec-desc">Class Diagram sistem GoaKaca.id sesuai diagram yang telah dirancang — menampilkan 8 kelas utama beserta atribut, method, dan relasi antar kelas.</p>
+
+  
+  <div class="diag-wrap">
+    <img src="classdiagramuts.jpg">
+    <p class="diag-caption">Class Diagram GoaKaca.id — 8 kelas: User (superclass), Pengunjung, Admin, Mitra Lokal (turunan User via generalisasi), Reservasi, Payment, Konten, dan Ulasan. Relasi: generalisasi (inheritance), asosiasi, dan komposisi.</p>
+  </div>
+
+  <h3>Penjelasan Peran Kelas</h3>
+  <table class="tbl">
+    <thead><tr><th>Kelas</th><th>Peran dalam Sistem</th><th>Relasi Utama</th></tr></thead>
+    <tbody>
+      <tr><td><strong>User</strong></td><td>Superclass yang merepresentasikan semua pengguna sistem. Menyimpan atribut dasar identitas (id, username, password) yang diwarisi oleh semua jenis pengguna.</td><td>Superclass dari Pengunjung, Admin, Mitra Lokal</td></tr>
+      <tr><td><strong>Pengunjung</strong></td><td>Merepresentasikan wisatawan yang mendaftar dan menggunakan layanan GoaKaca.id. Dapat melakukan reservasi, memberikan ulasan, dan mengakses informasi wisata.</td><td>Generalisasi dari User; 1..* Reservasi</td></tr>
+      <tr><td><strong>Admin</strong></td><td>Mengelola seluruh operasional sistem: konten informasi, pesan pengunjung, dan pemantauan arus transaksi. Memiliki akses penuh ke dashboard manajemen.</td><td>Generalisasi dari User; 1 Konten</td></tr>
+      <tr><td><strong>Mitra Lokal</strong></td><td>Mewakili pelaku usaha lokal (pemandu wisata, UMKM) yang bermitra dengan GoaKaca.id. Mengelola layanan guide dan penanganan masalah lapangan.</td><td>Generalisasi dari User; menyediakan layanan</td></tr>
+      <tr><td><strong>Reservasi</strong></td><td>Menyimpan data pemesanan tiket wisata oleh pengunjung. Mencakup tanggal kunjungan, jumlah orang, total biaya, dan status reservasi saat ini.</td><td>1..* dari Pengunjung; 1..1 Payment</td></tr>
+      <tr><td><strong>Payment</strong></td><td>Menangani proses transaksi keuangan: pemrosesan, konfirmasi, dan validasi pembayaran tiket wisata. Terintegrasi dengan gateway pembayaran eksternal.</td><td>1..1 dari Reservasi</td></tr>
+      <tr><td><strong>Konten</strong></td><td>Menyimpan semua konten informasi wisata (artikel, galeri, fasilitas) yang dikelola admin. Mendukung CRUD lengkap melalui method tambah, edit, dan hapus konten.</td><td>Dikelola oleh Admin; memiliki Ulasan (komposisi)</td></tr>
+      <tr><td><strong>Ulasan</strong></td><td>Merepresentasikan penilaian (nilai 1–5) dan komentar yang diberikan pengunjung terhadap konten wisata. Terhubung ke id_pengunjung dan id_konten untuk identifikasi.</td><td>Komposisi dari Konten; diberikan oleh Pengunjung</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<section class="sec" id="s5">
+  <div class="pill">💻 Soal 5 — Implementasi Website</div>
+  <h2>Form Kontak — Hubungi Kami</h2>
+  <p class="sec-desc">Implementasi form kontak interaktif sesuai soal 5. Form ini merepresentasikan fitur kontak pada website GoaKaca.id yang berfungsi secara visual di browser.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+    <div class="form-wrap">
+      <div class="form-group">
+        <label for="f-nama">Nama Lengkap <span style="color:#be123c;">*</span></label>
+        <input type="text" id="f-nama" placeholder="Masukkan nama lengkap Anda">
+      </div>
+      <div class="form-group">
+        <label for="f-email">Alamat Email <span style="color:#be123c;">*</span></label>
+        <input type="email" id="f-email" placeholder="email@contoh.com">
+      </div>
+      <div class="form-group">
+        <label for="f-telepon">No. Telepon</label>
+        <input type="text" id="f-telepon" placeholder="+62 8xx xxxx xxxx">
+      </div>
+      <div class="form-group">
+        <label for="f-topik">Topik Pesan <span style="color:#be123c;">*</span></label>
+        <select id="f-topik">
+          <option value="">-- Pilih Topik --</option>
+          <option>Informasi Kunjungan</option>
+          <option>Reservasi Tiket</option>
+          <option>Layanan Guide / Mitra</option>
+          <option>Kerjasama & Promosi</option>
+          <option>Laporan Masalah</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="f-pesan">Pesan <span style="color:#be123c;">*</span></label>
+        <textarea id="f-pesan" placeholder="Tuliskan pesan atau pertanyaan Anda di sini..."></textarea>
+      </div>
+      <button class="btn" onclick="kirimPesan()">✉️ Kirim Pesan</button>
+      <div class="alert ok" id="alert-ok">✅ Pesan Anda berhasil terkirim! Tim kami akan merespons dalam 1×24 jam kerja.</div>
+      <div class="alert err" id="alert-err">⚠️ Mohon lengkapi semua field yang wajib diisi (bertanda *) sebelum mengirim.</div>
+    </div>
+    <div>
+      <div class="info-box" style="margin-bottom:14px;">
+        <h4>📍 Lokasi Wisata Goa Kaca</h4>
+        <p>Kawasan Sumatera Utara<br>±5 jam dari Kota Medan</p>
+      </div>
+      <div class="info-box" style="margin-bottom:14px;">
+        <h4>📞 Kontak Langsung</h4>
+        <p>Telepon: +62 838-5634-4538<br>Email: info@goakaca.id<br>WhatsApp: +62 838-5634-4538</p>
+      </div>
+      <div class="info-box" style="margin-bottom:14px;">
+        <h4>🕐 Jam Operasional</h4>
+        <p>Senin – Sabtu: 08.00 – 17.00 WIB<br>Minggu & Hari Libur: 07.00 – 16.00 WIB</p>
+      </div>
+      <div class="info-box">
+        <h4>📱 Media Sosial</h4>
+        <p>Instagram: @goakaca.id<br>Facebook: Wisata Goa Kaca Sumut<br>YouTube: GoaKaca Official</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="s6">
+  <div class="pill">🎬 Soal 6 — Video Presentasi</div>
+  <h2>Video Presentasi & Identitas Mahasiswa</h2>
+  <p class="sec-desc">Identitas mahasiswa dan informasi video presentasi yang menjelaskan step-by-step pengerjaan UTS Rekayasa Perangkat Lunak.</p>
+
+  <h3>Identitas Mahasiswa</h3>
+  <table class="tbl" style="max-width:620px;margin-bottom:28px;">
+    <tbody>
+      <tr><td style="font-weight:700;width:200px;">Nama Lengkap</td><td>Gonzalez Exaudi Manurung</td></tr>
+      <tr><td style="font-weight:700;">NIM</td><td>253303611230</td></tr>
+      <tr><td style="font-weight:700;">Kelas</td><td>II / 2 Pagi A</td></tr>
+      <tr><td style="font-weight:700;">Mata Kuliah</td><td>Rekayasa Perangkat Lunak</td></tr>
+      <tr><td style="font-weight:700;">Semester</td><td>Semester II — Tahun Akademik 2025/2026</td></tr>
+      <tr><td style="font-weight:700;">Dosen Pengampu</td><td>Achmad Ridwan, ST, M.Si</td></tr>
+      <tr><td style="font-weight:700;">Tanggal UTS</td><td>Kamis, 7 Mei 2026 — Take-home (7–9 Mei 2026)</td></tr>
+      <tr><td style="font-weight:700;">Batas Pengumpulan</td><td>Sabtu, 9 Mei 2026 Jam 10.15 WIB</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Link Video YouTube</h3>
+  <div class="yt-box">
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:6px;">🎬 Link Video Presentasi (minimal 5 menit, visibilitas Public):</p>
+    <a href="#" id="yt-link">[Ganti dengan link YouTube setelah upload — contoh: https://youtu.be/XXXXXXXXX]</a>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:8px;">Video wajib menampilkan: tampilan website berjalan di browser, penjelasan setiap diagram UML, dan alasan pemilihan Goa Kaca sebagai potensi lokal.</p>
+  </div>
+
+  <h3>Link Simulasi Diagram</h3>
+  <div class="sim-box">
+    <p style="font-size:.78rem;color:var(--muted);margin-bottom:6px;">🔗 Link Diagram UML (draw.io / Lucidchart / PlantUML):</p>
+    <a href="https://drive.google.com/drive/folders/1b50DTqgOtkYFxKKgQUUOHvsAcS0qujf4?usp=sharing" id="diag-link">https://drive.google.com/drive/folders/1b50DTqgOtkYFxKKgQUUOHvsAcS0qujf4?usp=sharing</a>
+    <p style="font-size:.78rem;color:var(--muted);margin-top:8px;">Diagram dibuat sendiri menggunakan tools draw.io, Lucidchart, atau PlantUML. Tidak diperbolehkan menyalin dari internet.</p>
+  </div>
+
+  <div style="margin-top:32px;padding:20px;background:linear-gradient(135deg,#eff6ff,#f0fdf4);border-radius:12px;border:1px solid #bfdbfe;text-align:center;">
+    <p style="font-style:italic;color:var(--pri);font-size:.95rem;font-weight:600;margin-bottom:4px;">— Terimakasih Sudah Melihat. Saya akan jadikan karya ini agar lebih dikenal masyarakat luas. —</p>
+    <p style="font-size:.8rem;color:var(--muted);">Semester II | Kelas 2 Pagi A | Tahun Akademik 2025/2026 | Universitas Prima Indonesia — Fakultas Sains dan Teknologi</p>
+  </div>
+</section>
+
+</div>
+</main>
+</div>
+
+<script>
+
+function kirimPesan(){
+  var nama  = document.getElementById('f-nama').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var topik = document.getElementById('f-topik').value;
+  var pesan = document.getElementById('f-pesan').value.trim();
+  var ok  = document.getElementById('alert-ok');
+  var err = document.getElementById('alert-err');
+  ok.style.display='none'; err.style.display='none';
+  if(!nama||!email||!topik||!pesan){
+    err.style.display='block'; return;
+  }
+  ok.style.display='block';
+  document.getElementById('f-nama').value='';
+  document.getElementById('f-email').value='';
+  document.getElementById('f-telepon').value='';
+  document.getElementById('f-topik').value='';
+  document.getElementById('f-pesan').value='';
+}
+
+
+var allLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', function(){
+  var secs = document.querySelectorAll('section[id], div[id="hero"]');
+  var cur = 'hero';
+  secs.forEach(function(s){
+    if(window.scrollY >= s.offsetTop - 100) cur = s.id;
+  });
+  allLinks.forEach(function(l){
+    var href = l.getAttribute('href');
+    if(href === '#'+cur){
+      l.classList.add('active');
+    } else {
+      l.classList.remove('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
